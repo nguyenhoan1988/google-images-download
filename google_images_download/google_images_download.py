@@ -193,7 +193,7 @@ class googleimagesdownload:
 
     def _extract_data_pack_ajax(self, data):
         lines = data.split('\n')
-        return json.loads(lines[3] + lines[4])[0][2]
+        return json.loads(lines[3])[0][2]
 
     def _image_objects_from_pack(self, data):
         image_objects = json.loads(data)[31][0][12][2]
@@ -292,12 +292,12 @@ class googleimagesdownload:
 
         element = browser.find_element_by_tag_name("body")
         # Scroll down
-        for i in range(30):
+        for i in range(50):
             element.send_keys(Keys.PAGE_DOWN)
             time.sleep(0.3)
 
         try:
-            browser.find_element_by_id("smb").click()
+            browser.find_element_by_xpath('//input[@value="Show more results"]').click()
             for i in range(50):
                 element.send_keys(Keys.PAGE_DOWN)
                 time.sleep(0.3)  # bot id protection
